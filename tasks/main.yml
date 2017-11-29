@@ -1,5 +1,10 @@
 ---
 # tasks file for apigee-opdk-update-component-inplace
+- name: Determine if component was previously installed
+  stat:
+    path: "{{ apigee_home }}/{{ component }}"
+  register: component_state
 
 - name: Update apigee-setup
   shell: '{{ apigee_service }} {{ component }} update'
+  when: component_state.stat.exists
