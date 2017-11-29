@@ -5,6 +5,6 @@
     path: "{{ apigee_home }}/{{ component }}"
   register: component_state
 
-- name: Update apigee-setup
+- name: Update apigee component
   shell: '{{ apigee_service }} {{ component }} update'
   when: component_state.stat.exists
