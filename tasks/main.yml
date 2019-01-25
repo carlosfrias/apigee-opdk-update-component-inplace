@@ -8,9 +8,9 @@
 - name: Update apigee component
   shell: '/opt/apigee/apigee-service/bin/apigee-service {{ component }} update'
   environment:
-    http_proxy: "{{ http_proxy }}"
-    https_proxy: "{{ https_proxy }}"
-    no_proxy: "{{ no_proxy }}"
+    http_proxy: "{{ http_proxy | default('') }}"
+    https_proxy: "{{ https_proxy | default('') }}"
+    no_proxy: "{{ no_proxy | default('') }}"
     PORT_TIMEOUT: '{{ port_timeout | default(60) }}'
     UP_TIMEOUT: '{{ up_timeout | default(60) }}'
   when: component_state.stat.exists
